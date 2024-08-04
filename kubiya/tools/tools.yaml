@@ -5,7 +5,7 @@ tools:
     image: "amazon/aws-cli"
     content: |
       aws s3 ls
-    args: {}
+    args: []
     env:
       - "AWS_ACCESS_KEY_ID"
       - "AWS_SECRET_ACCESS_KEY"
