@@ -38,3 +38,15 @@ tools:
     with_files:
       - source: $HOME/.aws/credentials
         destination: /root/.aws/credentials
+
+  - name: cat-file
+    description: "cat file"
+    alias: "cat-file"
+    image: "alpine:20240807"
+    content: |
+      cat /root/bla.txt
+    args: []
+    with_files:
+      - source: $HOME/bla.txt
+        destination: /root/bla.txt
+
