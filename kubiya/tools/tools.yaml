@@ -34,7 +34,7 @@ tools:
     image: "amazon/aws-cli"
     content: |
       aws s3 ls
-    args: {}
+    args: []
     with_files:
       - source: $HOME/.aws/credentials
         destination: /root/.aws/credentials
