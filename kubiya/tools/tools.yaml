@@ -27,3 +27,14 @@ tools:
       - "AWS_SECRET_ACCESS_KEY"
       - "AWS_DEFAULT_REGION"
       - "AWS_SESSION_TOKEN"
+
+  - name: aws-s3-list-file
+    description: "List S3 buckets using AWS CLI"
+    alias: "awss3listfile"
+    image: "amazon/aws-cli"
+    content: |
+      aws s3 ls
+    args: {}
+    with_files:
+      - source: $HOME/.aws/credentials
+        destination: /root/.aws/credentials
