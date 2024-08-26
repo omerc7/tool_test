@@ -50,3 +50,17 @@ tools:
       - source: $HOME/bla.txt
         destination: /root/bla.txt
 
+  - name: list-env
+    description: "This tool lists all the env vars"
+    alias: "awslistsecrets"
+    image: "amazon/aws-cli"
+    content: |
+      env
+    args:
+      - name: max_items
+        description: 'Maximum number of items to list'
+        required: false
+    env:
+      - "TEST1"
+      - "TEST2"
+
