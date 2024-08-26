@@ -63,4 +63,5 @@ tools:
     env:
       - "TEST1"
       - "TEST2"
+      - "JFROG_ACCESS_TOKEN"
 
