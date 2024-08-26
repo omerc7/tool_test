@@ -52,7 +52,7 @@ tools:
 
   - name: list-env
     description: "This tool lists all the env vars"
-    alias: "awslistsecrets"
+    alias: "listenv"
     image: "amazon/aws-cli"
     content: |
       env
