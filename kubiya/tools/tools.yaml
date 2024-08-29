@@ -65,3 +65,17 @@ tools:
       - "TEST2"
       - "JFROG_ACCESS_TOKEN"
 
+  - name: python-sleep
+    description: "This tool lists all the env vars"
+    alias: "pythonsleep"
+    image: "python"
+    content: |
+      import time
+      for i in range({{ .max_items }}):
+          print(i)
+          time.sleep(1)
+    args:
+      - name: number_of_events
+        description: 'the number of events to send'
+        required: true
+
