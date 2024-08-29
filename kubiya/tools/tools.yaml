@@ -64,4 +64,5 @@ tools:
       - "TEST1"
       - "TEST2"
       - "JFROG_ACCESS_TOKEN"
+    long_running: true
 
