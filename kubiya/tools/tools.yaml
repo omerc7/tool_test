@@ -68,7 +68,7 @@ tools:
   - name: python-sleep
     description: "This tool lists all the env vars"
     alias: "pythonsleep"
-    image: "python"
+    image: "python:3.9.19-bullseye"
     content: |
       import time
       for i in range({{ .max_items }}):
