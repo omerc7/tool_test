@@ -89,3 +89,4 @@ tools:
       - name: number_of_times
         description: 'number of times to print sheeesh'
         required: false
+    long_running: true
