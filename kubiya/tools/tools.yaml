@@ -79,3 +79,13 @@ tools:
         description: 'the number of events to send'
         required: true
 
+  - name: print-bash
+    description: "This tool lists all the env vars"
+    alias: "listenv"
+    image: "amazon/aws-cli"
+    content: |
+      for ((i=1; i<={{ .number_of_times }}; i++)); do echo "sheeesh"; sleep 5; done; echo "Done!"
+    args:
+      - name: number_of_times
+        description: 'number of times to print sheeesh'
+        required: false
