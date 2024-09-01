@@ -71,8 +71,8 @@ tools:
     type: python
     content: |
       import time
-      for i in range({{ .max_items }}):
-          print(i)
+      for i in range({{ .number_of_events }}):
+          print(i, flush=True)
           time.sleep(1)
     args:
       - name: number_of_events
