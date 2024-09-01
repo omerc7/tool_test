@@ -66,7 +66,7 @@ tools:
       - "JFROG_ACCESS_TOKEN"
 
   - name: python-sleep
-    description: "This tool lists all the env vars"
+    description: "This tool uses python to print x number of events"
     alias: "pythonsleep"
     type: python
     content: |
@@ -80,7 +80,7 @@ tools:
         required: true
 
   - name: print-bash
-    description: "This tool lists all the env vars"
+    description: "This tool uses bash to print x number of events"
     alias: "listenv"
     image: "amazon/aws-cli"
     content: |
