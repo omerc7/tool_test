@@ -53,7 +53,7 @@ tools:
     args: []
     with_files:
       - source: $HOME/bla.txt
-        destination: /root/bla.txt
+        destination: /tmp/bla.txt
 
   - name: list-env
     description: "This tool lists all the env vars"
