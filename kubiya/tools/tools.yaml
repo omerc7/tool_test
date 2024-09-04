@@ -40,6 +40,8 @@ tools:
     with_files:
       - source: ~/.aws/credentials
         destination: $HOME/.aws/credentials
+    env:
+      - "AWS_DEFAULT_REGION"
 
   - name: cat-file
     description: "cat file"
