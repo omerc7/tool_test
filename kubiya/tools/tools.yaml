@@ -49,7 +49,7 @@ tools:
     alias: "cat-file"
     image: "alpine:20240807"
     content: |
-      cat /root/bla.txt
+      cat /tmp/bla.txt
     args: []
     with_files:
       - source: $HOME/bla.txt
