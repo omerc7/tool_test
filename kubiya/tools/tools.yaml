@@ -36,8 +36,8 @@ tools:
       aws s3 ls
     args: []
     with_files:
-      - source: $HOME/.aws/credentials
-        destination: ~/.aws/credentials
+      - source: ~/.aws/credentials
+        destination: $HOME/.aws/credentials
 
   - name: cat-file
     description: "cat file"
