@@ -39,7 +39,7 @@ tools:
     args: []
     with_files:
       - source: ~/.aws/credentials
-        destination: $HOME/.aws/credentials
+        destination: root/.aws/credentials
     env:
       - "AWS_DEFAULT_REGION"
 
