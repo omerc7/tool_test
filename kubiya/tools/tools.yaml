@@ -34,7 +34,7 @@ tools:
     image: "amazon/aws-cli"
     content: |
       echo "starting"
-      aws ecr describe-repositories --debug
+      aws s3 ls
       echo "ended"
     args: []
     with_files:
