@@ -34,8 +34,7 @@ tools:
     image: "amazon/aws-cli"
     content: |
       echo "starting"
-      cat $HOME/.aws/credentials
-      aws --debug s3 ls
+      aws s3 ls
       echo "ended"
     args: []
     with_files:
