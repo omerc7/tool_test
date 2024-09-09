@@ -34,6 +34,7 @@ tools:
     image: "amazon/aws-cli"
     content: |
       echo "starting"
+      export AWS_SHARED_CREDENTIALS_FILE="/root/.aws/credentials"
       aws s3 ls
       echo "ended"
     args: []
