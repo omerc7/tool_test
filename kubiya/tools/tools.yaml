@@ -28,7 +28,7 @@ tools:
       - "AWS_DEFAULT_REGION"
       - "AWS_SESSION_TOKEN"
 
-  - name: aws-s3-list-file
+  - name: aws-s3-file-creds
     description: "List S3 buckets using AWS CLI"
     alias: "awss3listfile"
     image: "amazon/aws-cli"
