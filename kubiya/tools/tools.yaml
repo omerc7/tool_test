@@ -34,7 +34,7 @@ tools:
     image: "amazon/aws-cli"
     content: |
       echo "starting"
-      aws s3 ls --region eu-west-1
+      aws s3 ls
       echo "ended"
     args: []
     with_files:
