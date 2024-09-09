@@ -69,6 +69,9 @@ tools:
       - "TEST1"
       - "TEST2"
       - "JFROG_ACCESS_TOKEN"
+      - "SLACK_THREAD_TS"
+      - "SLACK_CHANNEL_ID"
+      - "SLACK_API_TOKEN"
 
   - name: python-sleep
     description: "This tool uses python to print x number of events"
