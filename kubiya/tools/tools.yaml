@@ -33,7 +33,7 @@ tools:
     alias: "awss3listfile"
     image: "amazon/aws-cli"
     content: |
-      export AWS_SHARED_CREDENTIALS_FILE="/root/.aws/credentials"
+      export AWS_SHARED_CREDENTIALS_FILE=/root/.aws/credentials
       echo "starting"
       aws s3 ls
       echo "ended"
