@@ -33,10 +33,10 @@ tools:
     alias: "awss3listfile"
     image: "amazon/aws-cli"
     content: |
-      echo "starting"
+      echo "starting\n"
       export AWS_PROFILE={{ .aws_profile }}
       aws s3 ls
-      echo "ended"
+      echo "\nended"
     args: []
     with_files:
       - source: $HOME/.aws/credentials
