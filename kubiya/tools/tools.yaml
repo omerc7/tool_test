@@ -39,8 +39,8 @@ tools:
       echo "ended"
     args: []
     with_files:
-      - source: ~/.aws/credentials
-        destination: /root/.aws/credentials
+      - source: $HOME/.aws/credentials
+        destination: $HOME/.aws/credentials
     env:
       - "AWS_DEFAULT_REGION"
 
