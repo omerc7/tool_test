@@ -34,6 +34,7 @@ tools:
     image: "amazon/aws-cli"
     content: |
       echo "starting"
+      export AWS_PROFILE={{ .aws_profile }}
       aws s3 ls
       echo "ended"
     args: []
@@ -42,8 +43,12 @@ tools:
         destination: /root/.aws/credentials
       - source: $HOME/.aws/config
         destination: /root/.aws/config
-    env:
-      - "AWS_PROFILE"
+    args:
+      - name: aws_profile
+        description: 'The aws profile to use'
+        required: true
+    # env:
+    #   - "AWS_PROFILE"
         
 
   - name: cat-file
