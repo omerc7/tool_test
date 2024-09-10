@@ -86,7 +86,7 @@ tools:
     #   - "JFROG_ACCESS_TOKEN"
     #   - "SLACK_THREAD_TS"
     #   - "SLACK_CHANNEL_ID"
-    secert:
+    secrets:
       - "SLACK_API_TOKEN"
 
   - name: python-sleep
