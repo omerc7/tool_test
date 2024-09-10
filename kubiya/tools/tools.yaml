@@ -72,12 +72,13 @@ tools:
       - name: max_items
         description: 'Maximum number of items to list'
         required: false
-    env:
-      - "TEST1"
-      - "TEST2"
-      - "JFROG_ACCESS_TOKEN"
-      - "SLACK_THREAD_TS"
-      - "SLACK_CHANNEL_ID"
+    # env:
+    #   - "TEST1"
+    #   - "TEST2"
+    #   - "JFROG_ACCESS_TOKEN"
+    #   - "SLACK_THREAD_TS"
+    #   - "SLACK_CHANNEL_ID"
+    secert:
       - "SLACK_API_TOKEN"
 
   - name: python-sleep
