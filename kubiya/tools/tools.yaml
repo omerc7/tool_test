@@ -67,6 +67,11 @@ tools:
     alias: "listenv"
     image: "amazon/aws-cli"
     content: |
+      if [[ -v SLACK_API_TOKEN ]]; then
+          echo "Variable is set"
+      else
+          echo "Variable is not set"
+      fi
       echo "BEFORE TOKEN"
       echo $SLACK_API_TOKEN
       echo "AFTER TOKEN"
