@@ -67,6 +67,9 @@ tools:
     alias: "listenv"
     image: "amazon/aws-cli"
     content: |
+      echo "BEFORE TOKEN"
+      echo $SLACK_API_TOKEN
+      echo "AFTER TOKEN"
       env
     args:
       - name: max_items
