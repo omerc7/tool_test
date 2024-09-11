@@ -89,8 +89,8 @@ tools:
     #   - "SLACK_THREAD_TS"
     #   - "SLACK_CHANNEL_ID"
     
-    secrets:
-      - "SLACK_API_TOKEN"
+    # secrets:
+    #   - "SLACK_API_TOKEN"
 
   - name: python-sleep
     description: "This tool uses python to print x number of events"
