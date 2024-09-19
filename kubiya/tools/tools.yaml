@@ -80,9 +80,9 @@ tools:
       - name: max_items
         description: 'Maximum number of items to list'
         required: false
-    # env:
-    #   - "JIRA_OAUTH_TOKEN"
-    #   - "GH_TOKEN"
+    env:
+      - "JIRA_OAUTH_TOKEN"
+      - "GH_TOKEN"
     #   - "TEST1"
     #   - "TEST2"
     #   - "JFROG_ACCESS_TOKEN"
