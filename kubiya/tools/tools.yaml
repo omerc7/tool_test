@@ -80,17 +80,19 @@ tools:
       - name: max_items
         description: 'Maximum number of items to list'
         required: false
-    env:
-      - "JIRA_OAUTH_TOKEN"
-      - "GH_TOKEN"
+    # env:
+    #   - "JIRA_OAUTH_TOKEN"
+    #   - "GH_TOKEN"
     #   - "TEST1"
     #   - "TEST2"
     #   - "JFROG_ACCESS_TOKEN"
     #   - "SLACK_THREAD_TS"
     #   - "SLACK_CHANNEL_ID"
     
-    # secrets:
-    #   - "SLACK_API_TOKEN"
+    secrets:
+      - "JIRA_OAUTH_TOKEN"
+      - "GH_TOKEN"
+      # - "SLACK_API_TOKEN"
 
   - name: python-sleep
     description: "This tool uses python to print x number of events"
