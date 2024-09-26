@@ -92,7 +92,7 @@ tools:
     secrets:
       - "JIRA_OAUTH_TOKEN"
       - "GH_TOKEN"
-      # - "SLACK_API_TOKEN"
+      - "SLACK_API_TOKEN"
 
   - name: python-sleep
     description: "This tool uses python to print x number of events"
