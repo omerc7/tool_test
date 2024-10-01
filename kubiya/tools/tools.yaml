@@ -10,8 +10,8 @@ tools:
 
     args:
       - name: command
-          description: 'command to run via gcloud CLI'
-          required: True
+        description: 'command to run via gcloud CLI'
+        required: True
     secret:
       - "test-gcloud"
 
