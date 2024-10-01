@@ -6,7 +6,7 @@ tools:
     content: |
       echo $GCLOUD
       echo "========"
-      echo $GCLOUD > /root/service_acct_key
+      echo $GCLOUD | base64 --decode > /root/service_acct_key
       cat /root/service_acct_key
       gcloud auth login --cred-file=/root/service_acct_key
       gcloud {{.command}}
