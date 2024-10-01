@@ -9,9 +9,9 @@ tools:
       gcloud {{.command}}
 
     args:
-    - name: command
-        description: 'command to run via gcloud CLI'
-        required: True
+      - name: command
+          description: 'command to run via gcloud CLI'
+          required: True
     secret:
       - "test-gcloud"
 
