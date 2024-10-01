@@ -5,6 +5,7 @@ tools:
     image: "google/cloud-sdk"
     content: |
       echo $test-gcloud > /root/service_acct_key
+      cat /root/service_acct_key
       gcloud auth login --cred-file=/root/service_acct_key
       gcloud {{.command}}
 
