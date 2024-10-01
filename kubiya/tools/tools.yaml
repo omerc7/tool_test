@@ -15,7 +15,7 @@ tools:
       - name: command
         description: 'command to run via gcloud CLI'
         required: True
-    secret:
+    secrets:
       - "GCLOUD"
 
   - name: aws-s3-list
