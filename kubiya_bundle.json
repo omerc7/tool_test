@@ -6,7 +6,7 @@
       "alias": null,
       "description": "Greats a person via llm {name}!",
       "type": "docker",
-      "content": "\ncurl -LsSf https://astral.sh/uv/0.4.27/install.sh | sh > /dev/null 2>&1\nexport PATH=\"/root/.cargo/bin/:$PATH\"\n\nuv add litellm==1.49.4 typer==0.12.5 > /dev/null 2>&1\n\nuv run python /tmp/main.py \"{{ .name }}\"\n",
+      "content": "\ncurl -LsSf https://astral.sh/uv/0.4.27/install.sh | sh > /dev/null 2>&1\nexport PATH=\"/root/.cargo/bin/:$PATH\"\n\nuv venv > /dev/null 2>&1\n. .venv/bin/activate > /dev/null 2>&1\n\nuv pip install -r /tmp/requirements.txt > /dev/null 2>&1\n\npython /tmp/main.py \"{{ .name }}\"\n",
       "content_url": null,
       "args": [
         {
