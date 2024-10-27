@@ -6,7 +6,7 @@
       "alias": null,
       "description": "Greats a person via llm {name}!",
       "type": "docker",
-      "content": "\nstart_time=$(date +%s)\n\n# Timing for downloading and installing uv\ncurl -LsSf https://astral.sh/uv/install.sh | sh > /dev/null 2>&1\n. $HOME/.cargo/env\nuv_install_time=$(($(date +%s) - $start_time))\necho \"uv install time: $uv_install_time seconds\"\n\n# Timing for creating virtual environment\nstart_time=$(date +%s)\nuv venv > /dev/null 2>&1\n. .venv/bin/activate > /dev/null 2>&1\nvenv_time=$(($(date +%s) - $start_time))\necho \"virtual environment setup time: $venv_time seconds\"\n\n# Timing for installing requirements\nstart_time=$(date +%s)\nuv pip install -r /tmp/requirements.txt > /dev/null 2>&1\nrequirements_time=$(($(date +%s) - $start_time))\necho \"requirements installation time: $requirements_time seconds\"\n\n# Timing for running the main script\nstart_time=$(date +%s)\npython /tmp/main.py \"{{ .name }}\"\nmain_script_time=$(($(date +%s) - $start_time))\necho \"main script execution time: $main_script_time seconds\"\n\necho \"uv install time: $uv_install_time seconds\"\necho \"virtual environment setup time: $venv_time seconds\"\necho \"requirements installation time: $requirements_time seconds\"\necho \"main script execution time: $main_script_time seconds\"\n",
+      "content": "\nstart_time=$(date +%s)\n\n# Timing for downloading and installing uv\ncurl -LsSf https://astral.sh/uv/install.sh | sh > /dev/null 2>&1\n. $HOME/.cargo/env\nuv_install_time=$(($(date +%s) - $start_time))\necho \"uv install time: $uv_install_time seconds\"\n\n# Timing for creating virtual environment\nstart_time=$(date +%s)\nuv venv > /dev/null 2>&1\n. .venv/bin/activate > /dev/null 2>&1\nvenv_time=$(($(date +%s) - $start_time))\necho \"virtual environment setup time: $venv_time seconds\"\n\n# Timing for installing requirements\nstart_time=$(date +%s)\nuv pip install litellm==1.49.4 > /dev/null 2>&1\nrequirements_time=$(($(date +%s) - $start_time))\necho \"requirements installation time: $requirements_time seconds\"\n\n# Timing for running the main script\nstart_time=$(date +%s)\npython /tmp/main.py \"{{ .name }}\"\nmain_script_time=$(($(date +%s) - $start_time))\necho \"main script execution time: $main_script_time seconds\"\n\necho \"uv install time: $uv_install_time seconds\"\necho \"virtual environment setup time: $venv_time seconds\"\necho \"requirements installation time: $requirements_time seconds\"\necho \"main script execution time: $main_script_time seconds\"\n",
       "content_url": null,
       "args": [
         {
@@ -19,8 +19,12 @@
           "options_from": null
         }
       ],
-      "env": ["LLM_BASE_URL"],
-      "secrets": ["LLM_API_KEY"],
+      "env": [
+        "LLM_BASE_URL"
+      ],
+      "secrets": [
+        "LLM_API_KEY"
+      ],
       "dependencies": null,
       "dependencies_url": null,
       "openapi": null,
@@ -29,11 +33,6 @@
           "source": null,
           "destination": "/tmp/main.py",
           "content": "\nfrom typing_extensions import Annotated\n\nimport typer\n\napp = typer.Typer(rich_markup_mode=None, add_completion=False)\n\ndef litellm_hello_world(\n    name: str,\n):\n    import os\n    import litellm\n\n    llm_key = os.environ[\"LLM_API_KEY\"]\n    llm_base_url = os.environ[\"LLM_BASE_URL\"]\n\n    try:\n        response = litellm.completion(\n            model=\"openai/gpt-4o\",\n            api_key=llm_key,\n            base_url=llm_base_url,\n            messages=[\n                {\n                    \"content\": f\"Your task it to great people in a random movie star way, you must say which movie star you choose\",\n                    \"role\": \"system\",\n                },\n                {\"content\": f\"My name is {name}, greet me!\", \"role\": \"user\"},\n            ],\n        )\n    except Exception as e:\n        print(e)\n        return\n\n    print(response.choices[0].message.content)\n\n\napp.command()(litellm_hello_world)\n\nif __name__ == \"__main__\":\n    app()\n"
-        },
-        {
-          "source": null,
-          "destination": "/tmp/requirements.txt",
-          "content": "litellm==1.49.4\ntyper==0.12.5"
         }
       ],
       "with_services": [],
