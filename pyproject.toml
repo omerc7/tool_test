@@ -1,0 +1,10 @@
+[project]
+name = "tool-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "kubiya-sdk>=0.1.8",
+    "litellm>=1.51.0",
+]
