@@ -1,4 +1,11 @@
 tools:
+  - name: echo_hello
+    description: "echo hello"
+    alias: "echo-hello"
+    image: "alpine/3.20"
+    content: |
+      echo hello
+
   - name: gcp-command
     description: "run gcp commands"
     alias: "gcp-command"
