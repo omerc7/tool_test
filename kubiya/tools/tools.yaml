@@ -1,147 +1,147 @@
-tools:
-  - name: echo_hello
-    description: "echo hello"
-    alias: "echo-hello"
-    image: "alpine"
-    content: |
-      echo hello
+# tools:
+#   - name: echo_hello
+#     description: "echo hello"
+#     alias: "echo-hello"
+#     image: "alpine"
+#     content: |
+#       echo hello
 
-  - name: gcp-command
-    description: "run gcp commands"
-    alias: "gcp-command"
-    image: "google/cloud-sdk"
-    content: |
-      echo $GCLOUD
-      echo "========"
-      echo $GCLOUD | base64 --decode > /root/service_acct_key
-      cat /root/service_acct_key
-      gcloud auth login --cred-file=/root/service_acct_key
-      gcloud {{.command}}
+#   - name: gcp-command
+#     description: "run gcp commands"
+#     alias: "gcp-command"
+#     image: "google/cloud-sdk"
+#     content: |
+#       echo $GCLOUD
+#       echo "========"
+#       echo $GCLOUD | base64 --decode > /root/service_acct_key
+#       cat /root/service_acct_key
+#       gcloud auth login --cred-file=/root/service_acct_key
+#       gcloud {{.command}}
 
-    args:
-      - name: command
-        description: 'command to run via gcloud CLI'
-        required: True
-    secrets:
-      - "GCLOUD"
+#     args:
+#       - name: command
+#         description: 'command to run via gcloud CLI'
+#         required: True
+#     secrets:
+#       - "GCLOUD"
 
-  - name: aws-s3-list
-    description: "List S3 buckets using AWS CLI"
-    alias: "awss3list"
-    image: "amazon/aws-cli"
-    content: |
-      aws s3 ls
-    args: []
-    env:
-      - "AWS_ACCESS_KEY_ID"
-      - "AWS_SECRET_ACCESS_KEY"
-      - "AWS_DEFAULT_REGION"
-      - "AWS_SESSION_TOKEN"
+#   - name: aws-s3-list
+#     description: "List S3 buckets using AWS CLI"
+#     alias: "awss3list"
+#     image: "amazon/aws-cli"
+#     content: |
+#       aws s3 ls
+#     args: []
+#     env:
+#       - "AWS_ACCESS_KEY_ID"
+#       - "AWS_SECRET_ACCESS_KEY"
+#       - "AWS_DEFAULT_REGION"
+#       - "AWS_SESSION_TOKEN"
 
-  - name: aws-list-secrets
-    description: "List S3 secret manager secrets using AWS CLI"
-    alias: "awslistsecrets"
-    image: "amazon/aws-cli"
-    content: |
-      aws secretsmanager list-secrets --max-items {{ .max_items }}
-    args:
-      - name: max_items
-        description: 'Maximum number of items to list'
-        required: false
-    env:
-      - "AWS_ACCESS_KEY_ID"
-      - "AWS_SECRET_ACCESS_KEY"
-      - "AWS_DEFAULT_REGION"
-      - "AWS_SESSION_TOKEN"
+#   - name: aws-list-secrets
+#     description: "List S3 secret manager secrets using AWS CLI"
+#     alias: "awslistsecrets"
+#     image: "amazon/aws-cli"
+#     content: |
+#       aws secretsmanager list-secrets --max-items {{ .max_items }}
+#     args:
+#       - name: max_items
+#         description: 'Maximum number of items to list'
+#         required: false
+#     env:
+#       - "AWS_ACCESS_KEY_ID"
+#       - "AWS_SECRET_ACCESS_KEY"
+#       - "AWS_DEFAULT_REGION"
+#       - "AWS_SESSION_TOKEN"
 
-  - name: aws-s3-file-creds
-    description: "List S3 buckets using AWS CLI"
-    alias: "awss3listfile"
-    image: "amazon/aws-cli"
-    content: |
-      echo "starting\n"
-      export AWS_PROFILE={{ .aws_profile }}
-      aws s3 ls
-      echo "\nended"
-    args: []
-    with_files:
-      - source: $HOME/.aws/credentials
-        destination: /root/.aws/credentials
-      - source: $HOME/.aws/config
-        destination: /root/.aws/config
-    args:
-      - name: aws_profile
-        description: 'The aws profile to use'
-        required: true
-    # env:
-    #   - "AWS_PROFILE"
+#   - name: aws-s3-file-creds
+#     description: "List S3 buckets using AWS CLI"
+#     alias: "awss3listfile"
+#     image: "amazon/aws-cli"
+#     content: |
+#       echo "starting\n"
+#       export AWS_PROFILE={{ .aws_profile }}
+#       aws s3 ls
+#       echo "\nended"
+#     args: []
+#     with_files:
+#       - source: $HOME/.aws/credentials
+#         destination: /root/.aws/credentials
+#       - source: $HOME/.aws/config
+#         destination: /root/.aws/config
+#     args:
+#       - name: aws_profile
+#         description: 'The aws profile to use'
+#         required: true
+#     # env:
+#     #   - "AWS_PROFILE"
         
 
-  - name: cat-file
-    description: "cat file"
-    alias: "cat-file"
-    image: "alpine:20240807"
-    content: |
-      cat /tmp/bla.txt
-    args: []
-    with_files:
-      - source: $HOME/bla.txt
-        destination: /tmp/bla.txt
+#   - name: cat-file
+#     description: "cat file"
+#     alias: "cat-file"
+#     image: "alpine:20240807"
+#     content: |
+#       cat /tmp/bla.txt
+#     args: []
+#     with_files:
+#       - source: $HOME/bla.txt
+#         destination: /tmp/bla.txt
 
-  - name: list-env
-    description: "This tool lists all the env vars"
-    alias: "listenv"
-    image: "amazon/aws-cli"
-    content: |
-      if [[ -v SLACK_API_TOKEN ]]; then
-          echo "Variable is set"
-      else
-          echo "Variable is not set"
-      fi
-      echo "BEFORE TOKEN"
-      echo $SLACK_API_TOKEN
-      echo "AFTER TOKEN"
-      env
-    args:
-      - name: max_items
-        description: 'Maximum number of items to list'
-        required: false
-    env:
-      # - "JIRA_OAUTH_TOKEN"
-      # - "GH_TOKEN"
-    #   - "TEST1"
-    #   - "TEST2"
-    #   - "JFROG_ACCESS_TOKEN"
-    #   - "SLACK_THREAD_TS"
-    #   - "SLACK_CHANNEL_ID"
+#   - name: list-env
+#     description: "This tool lists all the env vars"
+#     alias: "listenv"
+#     image: "amazon/aws-cli"
+#     content: |
+#       if [[ -v SLACK_API_TOKEN ]]; then
+#           echo "Variable is set"
+#       else
+#           echo "Variable is not set"
+#       fi
+#       echo "BEFORE TOKEN"
+#       echo $SLACK_API_TOKEN
+#       echo "AFTER TOKEN"
+#       env
+#     args:
+#       - name: max_items
+#         description: 'Maximum number of items to list'
+#         required: false
+#     env:
+#       # - "JIRA_OAUTH_TOKEN"
+#       # - "GH_TOKEN"
+#     #   - "TEST1"
+#     #   - "TEST2"
+#     #   - "JFROG_ACCESS_TOKEN"
+#     #   - "SLACK_THREAD_TS"
+#     #   - "SLACK_CHANNEL_ID"
     
-    secrets:
-      - "JIRA_OAUTH_TOKEN"
-      - "GH_TOKEN"
-      - "SLACK_API_TOKEN"
+#     secrets:
+#       - "JIRA_OAUTH_TOKEN"
+#       - "GH_TOKEN"
+#       - "SLACK_API_TOKEN"
 
-  - name: python-sleep
-    description: "This tool uses python to print x number of events"
-    alias: "pythonsleep"
-    type: python
-    content: |
-      import time
-      for i in range({{ .number_of_events }}):
-          print(i, flush=True)
-          time.sleep(1)
-    args:
-      - name: number_of_events
-        description: 'the number of events to send'
-        required: true
+#   - name: python-sleep
+#     description: "This tool uses python to print x number of events"
+#     alias: "pythonsleep"
+#     type: python
+#     content: |
+#       import time
+#       for i in range({{ .number_of_events }}):
+#           print(i, flush=True)
+#           time.sleep(1)
+#     args:
+#       - name: number_of_events
+#         description: 'the number of events to send'
+#         required: true
 
-  - name: print-bash
-    description: "This tool uses bash to print x number of events"
-    alias: "listenv"
-    image: "amazon/aws-cli"
-    content: |
-      for ((i=1; i<={{ .number_of_times }}; i++)); do echo "sheeesh"; sleep 5; done; echo "Done!"
-    args:
-      - name: number_of_times
-        description: 'number of times to print sheeesh'
-        required: false
-    long_running: true
+#   - name: print-bash
+#     description: "This tool uses bash to print x number of events"
+#     alias: "listenv"
+#     image: "amazon/aws-cli"
+#     content: |
+#       for ((i=1; i<={{ .number_of_times }}; i++)); do echo "sheeesh"; sleep 5; done; echo "Done!"
+#     args:
+#       - name: number_of_times
+#         description: 'number of times to print sheeesh'
+#         required: false
+#     long_running: true
