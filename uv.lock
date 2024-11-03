@@ -903,7 +903,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "kubiya-sdk", specifier = ">=0.1.13" },
+    { name = "kubiya-sdk", specifier = "==0.1.13" },
     { name = "litellm", specifier = ">=1.51.0" },
 ]
 
