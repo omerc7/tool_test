@@ -94,7 +94,7 @@ tools:
     image: "alpine:3.20"
     content: |
       env
-    env:
+    secrets:
       - "TOP_SECRET"
       # - "GH_TOKEN"
 #     #   - "TEST1"
