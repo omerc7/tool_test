@@ -1,4 +1,4 @@
-# tools:
+tools:
 #   - name: echo_hello
 #     description: "echo hello"
 #     alias: "echo-hello"
@@ -88,27 +88,15 @@
 #       - source: $HOME/bla.txt
 #         destination: /tmp/bla.txt
 
-#   - name: list-env
-#     description: "This tool lists all the env vars"
-#     alias: "listenv"
-#     image: "amazon/aws-cli"
-#     content: |
-#       if [[ -v SLACK_API_TOKEN ]]; then
-#           echo "Variable is set"
-#       else
-#           echo "Variable is not set"
-#       fi
-#       echo "BEFORE TOKEN"
-#       echo $SLACK_API_TOKEN
-#       echo "AFTER TOKEN"
-#       env
-#     args:
-#       - name: max_items
-#         description: 'Maximum number of items to list'
-#         required: false
-#     env:
-#       # - "JIRA_OAUTH_TOKEN"
-#       # - "GH_TOKEN"
+  - name: list-env
+    description: "This tool lists all the env vars"
+    alias: "listenv"
+    image: "alpine:3.20"
+    content: |
+      env
+    env:
+      - "TOP_SECRET"
+      # - "GH_TOKEN"
 #     #   - "TEST1"
 #     #   - "TEST2"
 #     #   - "JFROG_ACCESS_TOKEN"
