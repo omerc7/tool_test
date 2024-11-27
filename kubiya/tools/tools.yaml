@@ -108,19 +108,19 @@ tools:
 #       - "GH_TOKEN"
 #       - "SLACK_API_TOKEN"
 
-#   - name: python-sleep
-#     description: "This tool uses python to print x number of events"
-#     alias: "pythonsleep"
-#     type: python
-#     content: |
-#       import time
-#       for i in range({{ .number_of_events }}):
-#           print(i, flush=True)
-#           time.sleep(1)
-#     args:
-#       - name: number_of_events
-#         description: 'the number of events to send'
-#         required: true
+  - name: python-sleep
+    description: "This tool uses python to print x number of events"
+    alias: "pythonsleep"
+    type: python
+    content: |
+      import time
+      for i in range({{ .number_of_events }}):
+          print(i, flush=True)
+          time.sleep(1)
+    args:
+      - name: number_of_events
+        description: 'the number of events to send'
+        required: true
 
 #   - name: print-bash
 #     description: "This tool uses bash to print x number of events"
