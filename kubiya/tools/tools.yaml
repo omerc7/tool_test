@@ -122,6 +122,21 @@ tools:
         description: 'the number of events to send'
         required: true
 
+  - name: timeout-event
+    description: "This tool uses python to print x number of events"
+    alias: "timeoutevent"
+    type: python
+    content: |
+      import time
+      sleep_time = {{ .sleep_time_secs }}
+      print(f"sleeping {sleep_time} secs")
+      time.sleep(sleep_time)
+      print(f"sleep done")
+    args:
+      - name: sleep_time_secs
+        description: 'the seconds to sleep'
+        required: true
+
   - name: print-bash
     description: "This tool uses bash to print x number of events"
     alias: "listenv"
