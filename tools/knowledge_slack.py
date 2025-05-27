@@ -79,7 +79,6 @@ def slack_knowledge():
             result = requests.post(f"{kubiya_api_url}/api/v1/rag/query/mind", json=payload, headers=headers)
             result.raise_for_status()
 
-            print(f"Knowledge query result: {result}")
             return result.json()
         except Exception as e:
             print(e)
@@ -87,10 +86,14 @@ def slack_knowledge():
             return
 
     def pretty_print_answer(answer: Answer):
+        slack_domain = os.environ["SLACK_DOMAIN"]
         print(f"Answer: {answer.content}")
+        # TODO: add references with slack links
         print("\n  References:")
         for ref in answer.references:
-            print(f"    - Timestamp: {ref.ts}, Channel ID: {ref.channel_id}")
+            print(
+                f" - https://{slack_domain}.slack.com/archives/{ref.channel_id}/p{ref.ts}"
+            )
 
     llm_key = os.environ["LLM_API_KEY"]
     llm_base_url = os.environ["LLM_BASE_URL"]
