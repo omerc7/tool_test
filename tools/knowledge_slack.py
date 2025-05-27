@@ -8,6 +8,7 @@ from kubiya_sdk.tools import function_tool
     requirements=["litellm==1.71.1", "requests==2.32.3", "pydantic==2.11.5"],
     env=[
         "LLM_BASE_URL",
+        "SLACK_DOMAIN",
         "KUBIYA_API_URL",
         "KUBIYA_USER_ORG",
         "SLACK_CHANNEL_ID",
