@@ -6,6 +6,7 @@ from kubiya_sdk.tools import function_tool
 @function_tool(
     description="answers questions based on the slack channel history",
     requirements=["litellm==1.71.1", "requests==2.32.3", "pydantic==2.11.5"],
+    image="python:3.12-alpine",
     env=[
         "LLM_BASE_URL",
         "SLACK_DOMAIN",
