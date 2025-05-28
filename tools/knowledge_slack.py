@@ -84,6 +84,9 @@ def slack_knowledge():
 
         return [SlackMessage(**m, channel_id=channel_id) for m in response["messages"]]
 
+    def remove_kubi_messages(messages: list[SlackMessage]) -> list[SlackMessage]:
+        return [m for m in messages if m.user != "U07RN2DSPL7"]
+
     def format_slack_thread(messages: list[SlackMessage]):
         formatted = "Message Thread:\n"
         for msg in messages:
@@ -156,7 +159,7 @@ def slack_knowledge():
         thread_messages = get_thread_messages(
             os.environ["SLACK_CHANNEL_ID"], os.environ["SLACK_THREAD_TS"]
         )
-        thread_context = format_slack_thread(thread_messages)
+        thread_context = format_slack_thread(remove_kubi_messages(thread_messages))
         response = litellm.completion(
             model="openai/gpt-4o",
             api_key=llm_key,
