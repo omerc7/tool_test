@@ -16,6 +16,7 @@ from kubiya_sdk.tools import function_tool
         "SLACK_DOMAIN",
         "KUBIYA_API_URL",
         "KUBIYA_USER_ORG",
+        "SLACK_THREAD_TS",
         "SLACK_CHANNEL_ID",
         "KUBIYA_USER_EMAIL",
         "KUBIYA_USER_MESSAGE",
