@@ -187,7 +187,12 @@ def slack_knowledge():
             response_format=ThreadResponse,
             messages=[
                 {
-                    "content": "Your task is to understand the user's question based on the messages in the thread. If the answer is in the thread, just return the answer. If the answer is not in the thread, return a concise question that will help retrieve better results. If the user messages is asking for help make sure to get the latest question from the thread context.",
+                    "content": """
+Extract the most relevant user question from the thread to search a knowledge base.
+	•	If the users latest message is a question, return it.
+	•	If not, return the most recent user question from the thread.
+	•	If the thread already contains an answer to that question, return the answer instead.
+""",
                     "role": "system",
                 },
                 {
