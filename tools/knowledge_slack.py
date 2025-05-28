@@ -88,13 +88,24 @@ def slack_knowledge():
     def remove_kubi_messages(
         messages: list[SlackMessageKnowledge],
     ) -> list[SlackMessageKnowledge]:
-        threads = []
+        filtered_messages = []
         for msg in messages:
+            # Filter out kubi messages from the thread
+            filtered_thread = []
             for thread_msg in msg.thread:
-                if thread_msg.metadata.user == "U07RN2DSPL7":
-                    continue
-                threads.append(thread_msg)
-        return threads
+                if thread_msg.metadata.user != "U07RN2DSPL7":
+                    filtered_thread.append(thread_msg)
+            
+            # Create a new SlackMessageKnowledge with filtered thread
+            filtered_msg = SlackMessageKnowledge(
+                content=msg.content,
+                metadata=msg.metadata,
+                relevance=msg.relevance,
+                thread=filtered_thread
+            )
+            filtered_messages.append(filtered_msg)
+        
+        return filtered_messages
 
     def format_slack_thread(messages: list[SlackMessage]):
         formatted = "Message Thread:\n"
