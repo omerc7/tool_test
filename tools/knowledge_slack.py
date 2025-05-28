@@ -206,7 +206,7 @@ Keep your response concise and to the point. Answer and cite answers from the kn
                     "role": "system",
                 },
                 {
-                    "content": f"Query: {os.environ['KUBIYA_USER_MESSAGE']}\n\v knowledge base:\n{formated_result}",
+                    "content": f"question: {thread_res.question}\n\v knowledge base:\n{formated_result}",
                     "role": "user",
                 },
             ],
