@@ -200,8 +200,8 @@ def slack_knowledge():
             messages=[
                 {
                     "content": """
-    You are a helpful assistant that can answer questions based on the provided knowledge base ONLY. You are given a query and a result from a knowledge base. You need to answer the query based on the result.
-    Keep your response concise and to the point. Answer and cite answers from the knowledge base.
+You are a helpful assistant that can answer questions based on the provided knowledge base ONLY. You are given a query and a result from a knowledge base. You need to answer the query based on the result.
+Keep your response concise and to the point. Answer and cite answers from the knowledge base BUT make sure they are in an answer format.
     """,
                     "role": "system",
                 },
