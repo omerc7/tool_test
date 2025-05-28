@@ -62,6 +62,7 @@ def slack_knowledge():
     class SlackMessageKnowledge(BaseModel):
         content: str
         metadata: SlackMessageKnowledgeMD
+        relevance: float
         thread: list[SlackThreadedMessageKnowledge]
 
     class ThreadResponse(BaseModel):
@@ -100,7 +101,7 @@ def slack_knowledge():
             ts = metadata.ts
 
             formatted_msg = (
-                f"Main Message:\n"
+                f"Main Message (relevance score: {msg.relevance}):\n"
                 f"{main_content}\n"
                 f"(channel_id: {channel_id}, ts: {ts})"
             )
@@ -124,7 +125,7 @@ def slack_knowledge():
     def query_rag(query: str, channel_id: str) -> list[SlackMessageKnowledge]:
         kubiya_api_url = os.environ["KUBIYA_API_URL"]
         payload = {
-            "threshold": 0.5,
+            "threshold": 0.55,
             "query": query,
             "channel_id": channel_id,
         }
@@ -184,6 +185,10 @@ def slack_knowledge():
 
         result = query_rag(thread_res.question, os.environ["SLACK_CHANNEL_ID"])
 
+        if not result:
+            print("No relevant information found in the knowledge base")
+            return
+
         formated_result = format_slack_threads(result)
 
         response = litellm.completion(
@@ -194,13 +199,13 @@ def slack_knowledge():
             messages=[
                 {
                     "content": """
-    You are a helpful assistant that can answer questions based on the provided context ONLY. You are given a query and a result from a knowledge base. You need to answer the query based on the result.
-    Keep your response concise and to the point.
+    You are a helpful assistant that can answer questions based on the provided knowledge base ONLY. You are given a query and a result from a knowledge base. You need to answer the query based on the result.
+    Keep your response concise and to the point. Answer and cite answers from the knowledge base.
     """,
                     "role": "system",
                 },
                 {
-                    "content": f"Query: {os.environ['KUBIYA_USER_MESSAGE']}\n\v Knowledge base result:\n{formated_result}",
+                    "content": f"Query: {os.environ['KUBIYA_USER_MESSAGE']}\n\v knowledge base:\n{formated_result}",
                     "role": "user",
                 },
             ],
