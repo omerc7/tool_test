@@ -20,14 +20,14 @@ from kubiya_sdk.tools import function_tool
         "SLACK_CHANNEL_ID",
         "KUBIYA_USER_EMAIL",
         "KUBIYA_USER_MESSAGE",
-        # "TEST_SLACK_CHANNEL_ID",  # TODO: remove this
-        # "TEST_SLACK_THREAD_TS",  # TODO: remove this
+        "TEST_SLACK_CHANNEL_ID",  # TODO: remove this
+        "TEST_SLACK_THREAD_TS",  # TODO: remove this
     ],
     secrets=[
         "LLM_API_KEY",
         "KUBIYA_API_KEY",
         "SLACK_API_TOKEN",
-        # "TEST_SLACK_API_TOKEN",  # TODO: remove this
+        "TEST_SLACK_API_TOKEN",  # TODO: remove this
     ],
 )
 def slack_knowledge():
@@ -40,9 +40,9 @@ def slack_knowledge():
     from slack_sdk import WebClient
 
     # TODO: remove this
-    # os.environ["SLACK_CHANNEL_ID"] = os.environ["TEST_SLACK_CHANNEL_ID"]
-    # os.environ["SLACK_THREAD_TS"] = os.environ["TEST_SLACK_THREAD_TS"]
-    # os.environ["SLACK_API_TOKEN"] = os.environ["TEST_SLACK_API_TOKEN"]
+    os.environ["SLACK_CHANNEL_ID"] = os.environ["TEST_SLACK_CHANNEL_ID"]
+    os.environ["SLACK_THREAD_TS"] = os.environ["TEST_SLACK_THREAD_TS"]
+    os.environ["SLACK_API_TOKEN"] = os.environ["TEST_SLACK_API_TOKEN"]
 
     class SlackMessage(BaseModel):
         ts: str
